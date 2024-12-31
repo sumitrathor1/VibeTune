@@ -1,0 +1,4 @@
+# Ignore all PNG, JPG, and JPEG files in the covers directory
+*.png
+*.jpg
+*.jpeg
