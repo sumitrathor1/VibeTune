@@ -1,4 +1,7 @@
-/songs/.mp3
-/covers/.png
-/covers/.jpg
-/covers/.jpeg
+# Ignore all MP3 files in the songs directory
+songs/*.mp3
+
+# Ignore all PNG, JPG, and JPEG files in the covers directory
+covers/*.png
+covers/*.jpg
+covers/*.jpeg
