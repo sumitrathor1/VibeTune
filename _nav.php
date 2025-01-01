@@ -3,7 +3,7 @@ function nav($activeNav)
 {
     $arr = [
         'home' => '<li class="nav-item"><a class="nav-link" aria-current="page" href="./">Home</a></li>',
-        'about' => '<li class="nav-item"><a class="nav-link" href="./">About</a></li>',
+        'about' => '<li class="nav-item"><a class="nav-link" href="./about.php">About</a></li>',
         'addPage' => '<li class="nav-item"><a class="nav-link" href="./addSong.php">Add Song</a></li>'
     ];
     ?>
@@ -24,7 +24,7 @@ function nav($activeNav)
                     foreach ($arr as $key => $value) {
                         if ($key == $activeNav) {
                             $pattern = '/(class="[^"]*nav-link)([^"]*")/';
-                            $replacement = '$1 active$2';
+                            $replacement = '$1 active border-bottom border-2$2';
                             $value = preg_replace($pattern, $replacement, $value);
                         }
                         echo $value;
