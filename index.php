@@ -73,7 +73,13 @@
     <main>
         <div class="container bg-black text-white my-4 p-5 rounded">
             <div class="songList">
-                <h1>Best of NCS - No Copyright Sounds</h1>
+                <div class="d-flex flex-row justify-content-around">
+                    <h1>Best of NCS - No Copyright Sounds</h1>
+                    <div class="d-flex h-50">
+                        <input class="form-control me-2" type="search" id="songName" placeholder="Search" aria-label="Search" required>
+                    </div>
+                </div>
+                <div id="songInfo" class="song-info"></div>
                 <div class="mt-5" id="songsList">
                 </div>
             </div>
@@ -147,6 +153,54 @@
             tooltipInstance = new bootstrap.Tooltip(muteButton);
         });
     </script>
+
+    <script>
+        let typingTimer;             
+        const doneTypingInterval = 3000;
+
+        document.getElementById('songName').addEventListener('input', function () {
+            clearTimeout(typingTimer);
+            if (document.getElementById('songName').value) {
+                typingTimer = setTimeout(doneTyping, doneTypingInterval);
+            }
+        });
+
+        function doneTyping() {
+            const songName = document.getElementById('songName').value;
+            const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${songName}`;
+
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
+                    'x-rapidapi-key': 'b556e236e4msh30b0ca1d27d9e96p189bb3jsnb6409c2a5bf1'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const song = data.data[0];
+                    const songInfoDiv = document.getElementById('songInfo');
+
+                    if (song) {
+                        songInfoDiv.innerHTML = `
+                            <h2>${song.title}</h2>
+                            <p>Artist: ${song.artist.name}</p>
+                            <img src="${song.album.cover_medium}" alt="${song.title} album cover">
+                            <div class="audio-player">
+                                <audio controls>
+                                    <source src="${song.preview}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        `;
+                    } else {
+                        songInfoDiv.innerHTML = '<p>No song found.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
     </script>
 
 </body>

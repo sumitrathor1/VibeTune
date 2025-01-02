@@ -69,7 +69,7 @@
                         <div class="mb-3 border border-secondary border-2 p-2 rounded">
                             <label for="projectDescription" class="form-label">Project Overview</label>
                             <div id="projectDescription" class="form-control bg-secondary fw-bolder">
-                                Welcome to our music website! This platform was created to provide music enthusiasts with a space to upload, and listen to their favorite songs. <br>website Built using HTML, CSS, JavaScript, Bootstrap, PHP, MySQL, and AJAX, our website offers a user-friendly interface and robust functionality.
+                                Welcome to our music website! This platform was created to provide music enthusiasts with a space to upload, and listen to their favorite songs. <br>website     Built using HTML, CSS, JavaScript, Bootstrap, PHP, MySQL, and AJAX, our website offers a user-friendly interface and robust functionality.
                             </div>
                         </div>
                         <div class="mb-3 border border-secondary border-2 p-2 rounded">
