@@ -10,57 +10,57 @@
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css" />
     <link rel="icon" href="./favicon.ico">
     <style>
-        input[type="range"] {
-            -webkit-appearance: none;
-            width: 100%;
+    input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+        background: gray;
+        height: 8px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background: white;
+        border: 1px solid black;
+        height: 20px;
+        width: 20px;
+        margin-top: -6px;
+        cursor: pointer;
+    }
+
+    input[type="range"]::-moz-range-track {
+        background: gray;
+        height: 8px;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        background: white;
+        border: 1px solid black;
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            border: #dc3545 !important;
+            width: 98% !important;
+            padding: 0px !important;
         }
 
-        input[type="range"]::-webkit-slider-runnable-track {
-            background: gray;
-            height: 8px;
+        .songItem {
+            margin: 10px 6px !important;
         }
 
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            background: white;
-            border: 1px solid black;
-            height: 20px;
-            width: 20px;
-            margin-top: -6px;
-            cursor: pointer;
+        .songInfo {
+            display: none;
+            opacity: 0;
         }
+    }
 
-        input[type="range"]::-moz-range-track {
-            background: gray;
-            height: 8px;
-        }
-
-        input[type="range"]::-moz-range-thumb {
-            background: white;
-            border: 1px solid black;
-            height: 20px;
-            width: 20px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                border: #dc3545 !important;
-                width: 98% !important;
-                padding: 0px !important;
-            }
-
-            .songItem {
-                margin: 10px 6px !important;
-            }
-
-            .songInfo {
-                display: none;
-                opacity: 0;
-            }
-        }
-
-        .cursor-pointer {}
+    .cursor-pointer {}
     </style>
 
 </head>
@@ -76,10 +76,18 @@
                 <div class="d-flex flex-row justify-content-around">
                     <h1>Best of NCS - No Copyright Sounds</h1>
                     <div class="d-flex h-50">
-                        <input class="form-control me-2" type="search" id="songName" placeholder="Search" aria-label="Search" required>
+                        <input class="form-control me-2" type="search" id="songName" placeholder="Search"
+                            aria-label="Search" required>
+                        <div class="loading d-none" id="loading">
+                            <img src="image/loading.gif" alt="Loading..." width="50">
+                        </div>
                     </div>
                 </div>
-                <div id="songInfo" class="song-info"></div>
+                <div class="loading d-flex justify-content-center d-none" id="loading1">
+                    <img src="image/loading2.gif" alt="Loading..." width="150">
+                </div>
+                <div id="songInfo" class="song-info">
+                </div>
                 <div class="mt-5" id="songsList">
                 </div>
             </div>
@@ -106,7 +114,8 @@
                     <i class="fas fa-3x fa-step-forward" id="next"></i>
                 </div>
                 <div class="d-flex justify-content-center align-items-center w-50">
-                    <div class="cursor-pointer me-2" data-bs-toggle="tooltip" id="muteDiv" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="mute">
+                    <div class="cursor-pointer me-2" data-bs-toggle="tooltip" id="muteDiv" data-bs-placement="top"
+                        data-bs-custom-class="custom-tooltip" data-bs-title="mute">
                         <i class="fa-solid fa-volume-low fa-lg" id="mute"></i>
                     </div>
                     <i class="fa-solid fa-volume-xmark fa-lg cursor-pointer" id="low-volume"></i>
@@ -121,88 +130,14 @@
 
 
     <style>
-        .songItem {
-            cursor: pointer;
-        }
+    .songItem {
+        cursor: pointer;
+    }
     </style>
     <script src="https://kit.fontawesome.com/a97454ccc3.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="./script.js"></script>
-    <script>
-        // Select the button element
-        let muteButton = document.getElementById("muteDiv");
-
-        // Initialize Bootstrap tooltips
-        let tooltipInstance = new bootstrap.Tooltip(muteButton);
-
-        // Add click event listener
-        muteButton.addEventListener('click', () => {
-            // Get the current value of the data-bs-title attribute
-            let currentTitle = muteButton.getAttribute('data-bs-title');
-            
-            // Toggle between 'mute' and 'unmute'
-            if (currentTitle === 'mute') {
-                muteButton.setAttribute('data-bs-title', 'unmute');
-            } else {
-                muteButton.setAttribute('data-bs-title', 'mute');
-            }
-
-            // Destroy and reinitialize the tooltip to update the content
-            tooltipInstance.dispose();
-            tooltipInstance = new bootstrap.Tooltip(muteButton);
-        });
-    </script>
-
-    <script>
-        let typingTimer;             
-        const doneTypingInterval = 3000;
-
-        document.getElementById('songName').addEventListener('input', function () {
-            clearTimeout(typingTimer);
-            if (document.getElementById('songName').value) {
-                typingTimer = setTimeout(doneTyping, doneTypingInterval);
-            }
-        });
-
-        function doneTyping() {
-            const songName = document.getElementById('songName').value;
-            const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${songName}`;
-
-            fetch(url, {
-                method: 'GET',
-                headers: {
-                    'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
-                    'x-rapidapi-key': 'b556e236e4msh30b0ca1d27d9e96p189bb3jsnb6409c2a5bf1'
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    const song = data.data[0];
-                    const songInfoDiv = document.getElementById('songInfo');
-
-                    if (song) {
-                        songInfoDiv.innerHTML = `
-                            <h2>${song.title}</h2>
-                            <p>Artist: ${song.artist.name}</p>
-                            <img src="${song.album.cover_medium}" alt="${song.title} album cover">
-                            <div class="audio-player">
-                                <audio controls>
-                                    <source src="${song.preview}" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                </audio>
-                            </div>
-                        `;
-                    } else {
-                        songInfoDiv.innerHTML = '<p>No song found.</p>';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-    </script>
-
 </body>
 
 </html>
