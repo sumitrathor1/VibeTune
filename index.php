@@ -137,8 +137,8 @@
     <script src="https://kit.fontawesome.com/a97454ccc3.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./script.js"></script>
-     <!-- <script src="temp.js"></script> -->
+    <!-- <script src="./script.js"></script> -->
+     <script src="temp.js"></script>
 </body>
 
 </html>
