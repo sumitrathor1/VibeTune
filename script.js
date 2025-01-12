@@ -9,20 +9,29 @@ let songInfoDiv = document.getElementById('songInfo');
 let songNameInput = document.getElementById('songName');
 let loadingDiv = document.getElementById('loading');
 
-let songs = []; // Consolidated song list
-let oldSongs = []; // Songs from local API
+let songs = []; 
+let oldSongs = []; 
 let currentSongIndex = 0;
 let audioElement = null;
 
 // Fetch songs from local API
 fetch('_fetch.php')
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
         oldSongs = data;
-        songs = [...oldSongs]; // Default to old API songs
+        songs = [...oldSongs];
         initializeSongs();
     })
-    .catch(error => console.error('Error fetching songs from local API:', error));
+    .catch(error => {
+        console.error('Error fetching songs from local API:', error);
+        songsList.innerHTML = '<p>Error loading songs from the server.</p>';
+    });
+
 
 // Initialize songs
 function initializeSongs() {
@@ -57,15 +66,16 @@ function updateSongsList() {
     addSongItemEventListeners();
 }
 
-// Add event listeners to song items
+
 function addSongItemEventListeners() {
-    Array.from(document.getElementsByClassName('songItemPlay')).forEach((element, i) => {
+    console.log(document.getElementsByClassName('songItem').length);
+    Array.from(document.getElementsByClassName('songItem')).forEach((element, i) => {
         element.addEventListener('click', () => {
             if (currentSongIndex === i && !audioElement.paused) {
-                pauseSong();
+                pauseSong(element);
             } else {
                 currentSongIndex = i;
-                playSong(true);
+                playSong(true, element);
             }
         });
     });
@@ -114,19 +124,30 @@ function addGlobalEventListeners() {
 }
 
 // Play song function
-function playSong(updateSource) {
+function playSong(updateSource, element) {
     if (updateSource) {
         audioElement.src = songs[currentSongIndex].songUrl;
     }
+    element.classList.add("border", "border-danger", "border-3");
+    element.children[0].children[0].classList.add("songOn");
+    element.children[2].children[1].classList.add("fa-pause-circle")
+    element.children[2].children[1].classList.remove("fa-play-circle")
+    console.log(element.children[2].children[1])
     audioElement.play();
     masterSongName.innerText = songs[currentSongIndex].songName;
     masterPlay.classList.remove('fa-play-circle');
     masterPlay.classList.add('fa-pause-circle');
     gif.style.opacity = 1;
+
+
 }
 
 // Pause song function
-function pauseSong() {
+function pauseSong(element) {
+    element.classList.remove("border", "border-danger", "border-3");
+    element.children[0].children[0].classList.remove("songOn");
+    element.children[2].children[1].classList.remove("fa-pause-circle")
+    element.children[2].children[1].classList.add("fa-play-circle")
     audioElement.pause();
     masterPlay.classList.remove('fa-pause-circle');
     masterPlay.classList.add('fa-play-circle');
