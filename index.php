@@ -5,11 +5,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Sumit, Vandana, Latasha, Himanshu">
     <title>Spotify</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css" />
     <link rel="icon" href="./favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
+
+
     <style>
+        .playwrite {
+  font-family: "Playwrite AU SA", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
     input[type="range"] {
         -webkit-appearance: none;
         width: 100%;
@@ -74,7 +86,7 @@
         <div class="container bg-black text-white my-4 p-5 rounded">
             <div class="songList">
                 <div class="d-flex flex-row justify-content-around">
-                    <h1>Best of NCS - No Copyright Sounds</h1>
+                    <h1 class="playwrite">Best of NCS - No Copyright Sounds</h1>
                     <div class="d-flex h-50">
                         <input class="form-control me-2" type="search" id="songName" placeholder="Search"
                             aria-label="Search" required>
