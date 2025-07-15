@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About</title>
-    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="icon" href="./favicon.ico">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
@@ -58,7 +59,7 @@
 <body class="bg-secondary">
     <div class="wrapper">
         <header>
-            <?php include "_nav.php";
+            <?php include "assets/pages/_nav.php";
             nav("about"); ?>
         </header>
         <main class="d-flex justify-content-center align-items-center">
@@ -118,6 +119,7 @@
             </p>
         </footer>
     </div>
-    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+
 </body>
 </html>

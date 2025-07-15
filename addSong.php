@@ -66,7 +66,7 @@
 <body class="bg-secondary">
     <div class="wrapper d-flex flex-column">
         <header>
-            <?php include "_nav.php";
+            <?php include "assets/pages/_nav.php";
             nav("addPage"); ?>
         </header>
         <main class="d-flex justify-content-center align-items-center">
@@ -187,7 +187,7 @@
 </html>
 
 <?php
-include "_connection.php";
+include "assets/pages/_connection.php";
 if (isset($_POST['UPLOAD']) && isset($_POST['songName']) && isset($_FILES["songFile"]) && isset($_POST['songTime'])) {
     $songName = $_POST['songName'];
     $songTime = $_POST['songTime'];

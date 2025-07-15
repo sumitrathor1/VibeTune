@@ -1,6 +1,6 @@
 <?php
-include "_connection.php";
-$sql = "SELECT * FROM `song`";
+include "../_connection.php";
+$sql = "SELECT * FROM `song` ORDER BY addedTime DESC";
 $result = $conn->query($sql);
 
 $songs = array();
