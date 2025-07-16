@@ -2,7 +2,7 @@
 $server = "localhost";
 $user = "root";
 $pass = "";
-$db = "spotify";
+$db = "VibeTune";
 
 $conn = mysqli_connect($server, $user, $pass, $db);
 
