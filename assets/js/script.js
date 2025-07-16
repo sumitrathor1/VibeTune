@@ -8,6 +8,7 @@ let volumeControl = document.getElementById('volumeControl');
 let songInfoDiv = document.getElementById('songInfo');
 let songNameInput = document.getElementById('songName');
 let loadingDiv = document.getElementById('loading');
+let totalTime = document.getElementById('totalTime'); // Assuming this exists in your HTML
 
 let songs = [];
 let oldSongs = [];
@@ -42,11 +43,12 @@ function initializeSongs() {
         totalTime.innerHTML = songs[currentSongIndex].songTime;
         updateSongsList();
         addGlobalEventListeners();
+        updateFavoriteCount();
+
     } else {
         songsList.innerHTML = '<p>No songs available.</p>';
     }
 }
-
 // Render all songs in the UI
 function updateSongsList() {
     songsList.innerHTML = '';
@@ -56,6 +58,9 @@ function updateSongsList() {
             ? `<div class="songName-container"><div class="songName-text-wrapper"><div class="songName-text">${song.songName}&nbsp;&nbsp;&nbsp;&nbsp;${song.songName}</div></div></div>`
             : `<div class="songName-container short"><div class="songName-text-wrapper"><div class="songName-text">${song.songName}</div></div></div>`;
 
+        // 👇 Heart icon updated based on favorite status
+        const heartClass = song.favorite == 1 ? 'fa-solid' : 'fa-regular';
+
         songsList.innerHTML += `
             <div id="song-${i}" class="songItem mt-2 p-2 d-flex align-items-center justify-content-between border rounded-start-pill text-wrap">
                 <div class="position-relative">
@@ -63,7 +68,7 @@ function updateSongsList() {
                 </div>
                 ${songNameHTML}
                 <span class="timestamp ms-2 w-25 d-flex justify-content-center align-items-center gap-2">
-                    <i class="fa-regular fa-heart"></i>
+                    <i class="${heartClass} fa-heart favorite"></i>
                     <span>${song.songTime}</span>
                     <i id="play-${i}" class="songItemPlay far fa-play-circle cursor-pointer"></i>
                     <i class="fa-regular fa-square-plus"></i>
@@ -73,6 +78,23 @@ function updateSongsList() {
     });
     addSongItemEventListeners();
 }
+
+function updateFavoriteCount() {
+    fetch('assets/pages/api/_count_favorites.php')
+        .then(response => response.json())
+        .then(data => {
+            const favoriteCountElement = document.querySelector('#favoriteCount');
+            if (favoriteCountElement && data.total !== undefined) {
+                favoriteCountElement.innerText = data.total;
+                console.log(data.total);
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching favorite count:", error);
+        });
+        console.log("count");   
+}
+
 
 // Add click listeners to each song item
 function addSongItemEventListeners() {
@@ -127,6 +149,47 @@ function addGlobalEventListeners() {
         if (progress >= 100) {
             currentSongIndex = (currentSongIndex + 1) % songs.length;
             playSong(true);
+        }
+    });
+
+    // ✅ Event Delegation for Heart Clicks
+    songsList.addEventListener('click', (e) => {
+        if (e.target.classList.contains('favorite')) {
+            e.preventDefault();
+
+            // Toggle icon on UI
+            e.target.classList.toggle('fa-regular');
+            e.target.classList.toggle('fa-solid');
+
+            // Get the song element and its `sno` from img alt attribute
+            const songItem = e.target.closest('.songItem');
+            const songIndex = parseInt(songItem.id.replace('song-', ''));
+            const song = songs[songIndex];
+
+            // Determine new favorite value
+            const newFavorite = e.target.classList.contains('fa-solid') ? 1 : 0;
+
+            // ✅ Send AJAX request to backend
+            fetch('assets/pages/api/_update_favorite.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `sno=${encodeURIComponent(song.sno)}&favorite=${newFavorite}`
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status == "success") {
+                        updateFavoriteCount();
+                    }
+                    else{
+                        console.error("Failed to update favorite:", data.message);
+                    }
+                })
+                .catch(err => {
+                    console.error("AJAX error:", err);
+                });
+
+
+            console.log(`Favorite clicked for sno: ${song.sno}, set to ${newFavorite}`);
         }
     });
 }

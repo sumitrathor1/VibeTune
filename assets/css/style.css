@@ -20,6 +20,10 @@
   min-height: 70vh;
 }
 
+.songItem:hover{
+  border: 1px solid rgb(11, 236, 240) !important;
+}
+
 .songItem img {
   width: 23px;
   height: 23px;
