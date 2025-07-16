@@ -16,23 +16,7 @@ let currentSongIndex = 0;
 let audioElement = null;
 let currentSongItem = null;
 
-// Fetch songs from local API
-fetch('assets/pages/api/_fetch.php')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        oldSongs = data;
-        songs = [...oldSongs];
-        initializeSongs();
-    })
-    .catch(error => {
-        console.error('Error fetching songs from local API:', error);
-        songsList.innerHTML = '<p>Error loading songs from the server.</p>';
-    });
+fetchSongsByFilter('all');
 
 // Initialize the first song and render song list
 function initializeSongs() {
@@ -80,21 +64,45 @@ function updateSongsList() {
 }
 
 function updateFavoriteCount() {
-    fetch('assets/pages/api/_count_favorites.php')
-        .then(response => response.json())
-        .then(data => {
-            const favoriteCountElement = document.querySelector('#favoriteCount');
-            if (favoriteCountElement && data.total !== undefined) {
-                favoriteCountElement.innerText = data.total;
-                console.log(data.total);
-            }
-        })
-        .catch(error => {
-            console.error("Error fetching favorite count:", error);
-        });
-        console.log("count");   
+    fetch('assets/pages/api/_count_songs.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'type=favorite'
+    })
+    .then(response => response.json())
+    .then(data => {
+        const favoriteCountElement = document.querySelector('#favoriteCount');
+        if (favoriteCountElement && data.total_favorites !== undefined) {
+            favoriteCountElement.innerText = data.total_favorites;
+        }
+    })
+    .catch(error => {
+        console.error("Error fetching favorite count:", error);
+    });
 }
 
+function countAllSongs() {
+    fetch('assets/pages/api/_count_songs.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'type=all'
+    })
+    .then(response => response.json())
+    .then(data => {
+        const allCountElement = document.querySelector('#allCount');
+        if (allCountElement && data.total !== undefined) {
+            allCountElement.innerText = data.total;
+        }
+    })
+    .catch(error => {
+        console.error("Error fetching favorite count:", error);
+    });
+}
+countAllSongs();
 
 // Add click listeners to each song item
 function addSongItemEventListeners() {
@@ -187,9 +195,6 @@ function addGlobalEventListeners() {
                 .catch(err => {
                     console.error("AJAX error:", err);
                 });
-
-
-            console.log(`Favorite clicked for sno: ${song.sno}, set to ${newFavorite}`);
         }
     });
 }
@@ -271,6 +276,46 @@ songNameInput.addEventListener('input', () => {
 function toggleLoading(show) {
     loadingDiv.classList.toggle('show', show);
 }
+
+document.querySelector('.Favorites-song-playlist').addEventListener('click', () => {
+    fetchSongsByFilter('favorites');
+});
+
+document.querySelector('.All-song-playlist').addEventListener('click', () => {
+    fetchSongsByFilter('all');
+});
+
+function fetchSongsByFilter(filter) {
+    toggleLoading(true);
+
+    fetch('assets/pages/api/_fetch_songs.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `filter=${encodeURIComponent(filter)}`
+    })
+    .then(response => {
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        return response.json();
+    })
+    .then(data => {
+        toggleLoading(false);
+
+        if (data.length > 0) {
+            songs = data;
+            initializeSongs(); // Re-render the song list
+        } else {
+            songsList.innerHTML = '<p>No songs found.</p>';
+        }
+    })
+    .catch(error => {
+        console.error(`Error fetching ${filter} songs:`, error);
+        toggleLoading(false);
+        songsList.innerHTML = `<p>Error loading ${filter} songs.</p>`;
+    });
+}
+
 
 // Fetch from Deezer
 function fetchFromDeezer(songName) {

@@ -5,60 +5,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Song</title>
-    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css" />
-    <link rel="icon" href="./favicon.ico">
+    <title>VibeTune | Add Song</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="icon" href="assets/images/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
+        integrity="sha512-58P9Hy7II0YeXLv+iFiLCv1rtLW47xmiRpC1oFafeKNShp8V5bKV/ciVtYqbk2YfxXQMt58DjNfkXFOn62xE+g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="assets/images/favicon.ico">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        font-family: 'varela Round', sans-serif;
+        width: 70%;
+    }
 
-        .brand img {
-            width: 44px;
-            padding: 0px 8px;
-        }
+    #songPreview {
+        height: 37px;
+    }
 
-        footer {
-            width: 100%;
-            font-family: 'varela Round', sans-serif;
-        }
+    #coverPreview {
+        height: 100px;
+    }
 
+    @media (max-width: 600px) {
         .container {
-            font-family: 'varela Round', sans-serif;
-            width: 70%;
+            width: 98%;
+            padding: 0px !important;
         }
 
-        #songPreview {
-            height: 37px;
+        .songList {
+            padding: 0px 10px 0px 10px;
         }
+    }
 
-        #coverPreview {
-            height: 100px;
-        }
+    /* Flexbox layout to ensure footer stays at the bottom */
+    .wrapper {
+        min-height: 100vh;
+    }
 
-        @media (max-width: 600px) {
-            .container {
-                width: 98%;
-                padding: 0px !important;
-            }
-
-            .songList {
-                padding: 0px 10px 0px 10px;
-            }
-        }
-
-        /* Flexbox layout to ensure footer stays at the bottom */
-        .wrapper {
-            min-height: 100vh;
-        }
-
-        main {
-            flex: 1;
-        }
+    main {
+        flex: 1;
+    }
     </style>
 
 </head>
@@ -121,66 +122,66 @@
     </div>
     <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
     <script>
-        document.getElementById('songFile').addEventListener('change', function (event) {
-            const songFile = event.target.files[0];
-            const songPreview = document.getElementById('songPreview');
+    document.getElementById('songFile').addEventListener('change', function(event) {
+        const songFile = event.target.files[0];
+        const songPreview = document.getElementById('songPreview');
 
-            // Clear any previous preview
-            songPreview.innerHTML = '';
+        // Clear any previous preview
+        songPreview.innerHTML = '';
 
-            if (songFile && songFile.type === 'audio/mpeg') {
+        if (songFile && songFile.type === 'audio/mpeg') {
 
-                let songTime = document.getElementById("songTime");
+            let songTime = document.getElementById("songTime");
 
-                const audio = document.createElement('audio');
-                audio.controls = true;
-                audio.controlsList = 'nodownload';
-                audio.style.width = "100%";
-                audio.style.height = "27px";
+            const audio = document.createElement('audio');
+            audio.controls = true;
+            audio.controlsList = 'nodownload';
+            audio.style.width = "100%";
+            audio.style.height = "27px";
 
-                const objectUrl = URL.createObjectURL(songFile);
+            const objectUrl = URL.createObjectURL(songFile);
 
-                audio.addEventListener('loadedmetadata', () => {
-                    let totalSecond = audio.duration;
-                    let totalMin = Math.floor(totalSecond / 60);
-                    let totalSec = Math.floor(totalSecond % 60);
+            audio.addEventListener('loadedmetadata', () => {
+                let totalSecond = audio.duration;
+                let totalMin = Math.floor(totalSecond / 60);
+                let totalSec = Math.floor(totalSecond % 60);
 
-                    totalMin = totalMin < 10 ? '0' + totalMin : totalMin;
-                    totalSec = totalSec < 10 ? '0' + totalSec : totalSec;
-                    songTime.value = totalMin + ":" + totalSec;
-                });
+                totalMin = totalMin < 10 ? '0' + totalMin : totalMin;
+                totalSec = totalSec < 10 ? '0' + totalSec : totalSec;
+                songTime.value = totalMin + ":" + totalSec;
+            });
 
-                audio.src = objectUrl;
-                songPreview.appendChild(audio);
-            } else {
-                alert('Please upload a valid .mp3 file.');
-            }
-        });
+            audio.src = objectUrl;
+            songPreview.appendChild(audio);
+        } else {
+            alert('Please upload a valid .mp3 file.');
+        }
+    });
 
-        document.getElementById('coverFile').addEventListener('change', function (event) {
-            const coverFile = event.target.files[0];
-            const coverPreview = document.getElementById('coverPreview');
+    document.getElementById('coverFile').addEventListener('change', function(event) {
+        const coverFile = event.target.files[0];
+        const coverPreview = document.getElementById('coverPreview');
 
-            // Clear any previous preview
-            coverPreview.innerHTML = '';
+        // Clear any previous preview
+        coverPreview.innerHTML = '';
 
-            if (coverFile && coverFile.type.startsWith('image/')) {
+        if (coverFile && coverFile.type.startsWith('image/')) {
 
-                const coverPreviewDiv = document.getElementById("coverPreviewDiv");
-                coverPreviewDiv.classList.remove('d-none');
+            const coverPreviewDiv = document.getElementById("coverPreviewDiv");
+            coverPreviewDiv.classList.remove('d-none');
 
-                const img = document.createElement('img');
-                img.style.width = "90px";
-                img.style.height = "90px";
-                img.classList.add('border', 'border-dark', 'border-3', 'rounded');
+            const img = document.createElement('img');
+            img.style.width = "90px";
+            img.style.height = "90px";
+            img.classList.add('border', 'border-dark', 'border-3', 'rounded');
 
-                const objectUrl = URL.createObjectURL(coverFile);
-                img.src = objectUrl;
-                coverPreview.appendChild(img);
-            } else {
-                alert('Please upload a valid image file.');
-            }
-        });
+            const objectUrl = URL.createObjectURL(coverFile);
+            img.src = objectUrl;
+            coverPreview.appendChild(img);
+        } else {
+            alert('Please upload a valid image file.');
+        }
+    });
     </script>
 </body>
 

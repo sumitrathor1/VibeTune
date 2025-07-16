@@ -10,8 +10,7 @@
 }
 
 .brand img {
-  width: 44px;
-  padding: 0px 8px;
+  width: 142px;
 }
 
 .container {
@@ -224,4 +223,13 @@ input[type="range"]::-moz-range-thumb {
 
 .loading.show {
     visibility: visible;
+}
+
+
+.Favorites-song-playlist, .All-song-playlist{
+  cursor: pointer;
+}
+
+.Favorites-song-playlist:hover, .All-song-playlist:hover {
+  border: 1px solid rgb(11, 236, 240) !important;
 }

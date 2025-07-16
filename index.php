@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta author="Sumit, Vandana, Latasha, Himanshu">
-    <title>Spotify</title>
+    <title>VibeTune | Home</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <link rel="icon" href="./favicon.ico">
+    <link rel="icon" href="assets/images/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
@@ -36,7 +36,7 @@
                         <input class="form-control me-2" type="search" id="songName" placeholder="Search"
                             aria-label="Search" required>
                         <div class="loading" id="loading">
-                            <img src="image/loading.gif" alt="Loading..." width="50">
+                            <img src="assets/images/loading.gif" alt="Loading..." width="50">
                         </div>
                     </div>
                 </div>
@@ -45,17 +45,27 @@
                         <div id="songInfo" class="song-info">
                         </div>
                         <div id="songsList" class="mt-4 border rounded p-2 overflow-auto custom-scrollbar"
-                            style="max-height: 300px; overflow-x: hidden; overflow-y: auto;">
+                            style="height: 300px; overflow-x: hidden; overflow-y: auto;">
                         </div>
                     </div>
 
                     <div class="w-50 playlist">
                         <div class="w-50">
                             <div class="mt-4 border rounded p-2 overflow-auto custom-scrollbar"
-                                style="max-height: 300px; overflow-x: hidden; overflow-y: auto;">
+                                style="height: 300px; overflow-x: hidden; overflow-y: auto;">
 
                                 <!-- Playlist Title / Icon -->
-                                <div class="p-2 d-flex align-items-center justify-content-between border rounded-end-pill border p-2 mt-2 rounded">
+                                <div class="All-song-playlist p-2 d-flex align-items-center justify-content-between border rounded-end-pill border p-2 mt-2 rounded">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i class="fa-regular fa-folder"></i>
+                                        <div>All Songs</div>
+                                    </div>
+                                    <div class="me-2">
+                                        <small id="allCount">0</small>
+                                    </div>
+                                </div>
+                                <div>
+                                <div class="Favorites-song-playlist p-2 d-flex align-items-center justify-content-between border rounded-end-pill border p-2 mt-2 rounded">
                                     <div class="d-flex align-items-center gap-2">
                                         <i class="fa-regular fa-folder"></i>
                                         <div>Favorites</div>

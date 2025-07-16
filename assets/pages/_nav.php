@@ -10,9 +10,7 @@ function nav($activeNav)
 <nav class="navbar navbar-expand-lg bg-black border-bottom border-body" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="./">
-            <li class="brand d-flex align-items-center fw-bolder fs-4"><img src="image/logo.png" alt="Spotify">
-                Spotify
-            </li>
+            <li class="brand d-flex align-items-center fw-bolder fs-4"><img src="assets/images/logo.png" alt="Logo"></li>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

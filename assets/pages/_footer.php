@@ -9,7 +9,7 @@
         </div>
         <div class="d-flex flex-row justify-content-around align-items-center w-100">
             <div class="songInfo w-50">
-                <img src="image/playing.gif" id="gif">
+                <img src="assets/images/playing.gif" id="gif">
                 <span class="fw-bolder text-wrap" id="masterSongName"></span>
             </div>
             <div class="icons mt-2 w-50 d-flex justify-content-center align-items-center">
