@@ -28,6 +28,16 @@
         nav("home"); ?>
     </header>
     <main>
+        <div id="playlistDropdown" class="position-absolute border bg-white p-2 rounded shadow d-none"
+            style="z-index: 1000; min-width: 200px;">
+            <div id="existingPlaylists" class="mb-2"></div>
+            <input type="text" id="newPlaylistName" class="form-control form-control-sm mb-1"
+                placeholder="New playlist name">
+            <button id="addPlaylistBtn" class="btn btn-sm btn-primary w-100">Add Playlist</button>
+            <hr>
+            <button id="removePlaylistBtn" class="btn btn-sm btn-danger w-100">Remove from Playlist</button>
+        </div>
+
         <div class="container bg-black text-white my-4 p-5 rounded">
             <div class="songList">
                 <div class="d-flex flex-row justify-content-around align-items-center">
@@ -55,7 +65,8 @@
                                 style="height: 300px; overflow-x: hidden; overflow-y: auto;">
 
                                 <!-- Playlist Title / Icon -->
-                                <div class="All-song-playlist p-2 d-flex align-items-center justify-content-between border rounded-end-pill border p-2 mt-2 rounded">
+                                <div
+                                    class="All-song-playlist p-2 d-flex align-items-center justify-content-between border rounded-end-pill border p-2 mt-2 rounded">
                                     <div class="d-flex align-items-center gap-2">
                                         <i class="fa-regular fa-folder"></i>
                                         <div>All Songs</div>
@@ -65,23 +76,24 @@
                                     </div>
                                 </div>
                                 <div>
-                                <div class="Favorites-song-playlist p-2 d-flex align-items-center justify-content-between border rounded-end-pill border p-2 mt-2 rounded">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <i class="fa-regular fa-folder"></i>
-                                        <div>Favorites</div>
+                                    <div
+                                        class="Favorites-song-playlist p-2 d-flex align-items-center justify-content-between border rounded-end-pill border p-2 mt-2 rounded">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <i class="fa-regular fa-folder"></i>
+                                            <div>Favorites</div>
+                                        </div>
+                                        <div class="me-2">
+                                            <small id="favoriteCount">0</small>
+                                        </div>
                                     </div>
-                                    <div class="me-2">
-                                        <small id="favoriteCount">0</small>
-                                    </div>
+                                    <div class="playlists" id="playlistContainer"></div>
                                 </div>
-                                <div class="playlists" id="playlistContainer"></div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
     </main>
     <?php include "assets/pages/_footer.php"; ?>
     <style>
