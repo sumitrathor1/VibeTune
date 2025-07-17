@@ -74,38 +74,7 @@
                                         <small id="favoriteCount">0</small>
                                     </div>
                                 </div>
-                                <div>
-                                    <!-- <div
-                                        class="p-2 d-flex align-items-center gap-2 border rounded-end-pill border p-2 mt-2 rounded">
-                                        <i class="fa-regular fa-folder"></i>
-                                        <div>Sad</div>
-                                    </div>
-                                    <div
-                                        class="p-2 d-flex align-items-center gap-2 border rounded-end-pill border p-2 mt-2 rounded">
-                                        <i class="fa-regular fa-folder"></i>
-                                        <div>Love</div>
-                                    </div>
-                                    <div
-                                        class="p-2 d-flex align-items-center gap-2 border rounded-end-pill border p-2 mt-2 rounded">
-                                        <i class="fa-regular fa-folder"></i>
-                                        <div>English</div>
-                                    </div>
-                                    <div
-                                        class="p-2 d-flex align-items-center gap-2 border rounded-end-pill border p-2 mt-2 rounded">
-                                        <i class="fa-regular fa-folder"></i>
-                                        <div>Panjabi</div>
-                                    </div>
-                                    <div
-                                        class="p-2 d-flex align-items-center gap-2 border rounded-end-pill border p-2 mt-2 rounded">
-                                        <i class="fa-regular fa-folder"></i>
-                                        <div>Pagal Panti</div>
-                                    </div>
-                                    <div
-                                        class="p-2 d-flex align-items-center gap-2 border rounded-end-pill border p-2 mt-2 rounded">
-                                        <i class="fa-regular fa-folder"></i>
-                                        <div>Hidden</div>
-                                    </div> -->
-                                </div>
+                                <div class="playlists" id="playlistContainer"></div>
                             </div>
                         </div>
                     </div>

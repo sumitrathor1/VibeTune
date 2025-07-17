@@ -226,10 +226,10 @@ input[type="range"]::-moz-range-thumb {
 }
 
 
-.Favorites-song-playlist, .All-song-playlist{
+.Favorites-song-playlist, .All-song-playlist, .playlist-item{
   cursor: pointer;
 }
 
-.Favorites-song-playlist:hover, .All-song-playlist:hover {
+.Favorites-song-playlist:hover, .All-song-playlist:hover, .playlist-item:hover{
   border: 1px solid rgb(11, 236, 240) !important;
 }

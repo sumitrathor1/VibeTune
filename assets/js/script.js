@@ -104,6 +104,51 @@ function countAllSongs() {
 }
 countAllSongs();
 
+function loadPlaylists() {
+    fetch('assets/pages/api/_count_songs.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'type=playlists'
+    })
+    .then(res => res.json())
+    .then(data => {
+        const playlistContainer = document.getElementById('playlistContainer');
+        playlistContainer.innerHTML = '';
+
+        if (data.playlists && data.playlists.length > 0) {
+            data.playlists.forEach(playlist => {
+                const div = document.createElement('div');
+                div.className = 'playlist-item p-2 d-flex align-items-center justify-content-between border rounded-end-pill mt-2';
+                div.innerHTML = `
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="fa-regular fa-folder"></i>
+                        <div>${playlist.name}</div>
+                    </div>
+                    <div class="me-2">
+                        <small>${playlist.count}</small>
+                    </div>
+                `;
+
+                div.addEventListener('click', () => {
+                    fetchSongsByFilter(playlist.name);
+                });
+
+                playlistContainer.appendChild(div);
+            });
+        } else {
+            playlistContainer.innerHTML = '<div class="text-muted">No playlists found.</div>';
+        }
+    })
+    .catch(err => {
+        console.error("Error fetching playlists:", err);
+    });
+}
+
+// Call this once on page load
+loadPlaylists();
+
 // Add click listeners to each song item
 function addSongItemEventListeners() {
     document.querySelectorAll('.songItem').forEach((element, i) => {
