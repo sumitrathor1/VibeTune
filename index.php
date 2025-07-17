@@ -2,25 +2,45 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta author="Sumit, Vandana, Latasha, Himanshu">
-    <title>VibeTune | Home</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <link rel="icon" href="assets/images/favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>VibeTune - Discover & Stream Your Favorite Music</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="VibeTune is a free music streaming platform to explore, save, and play your favorite songs seamlessly." />
+    <meta name="keywords"
+        content="VibeTune, music player, free music streaming, song playlist, music app, online songs" />
+    <meta name="author" content="Sumit Rathor, Team VibeTune" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://sumitrathor.rf.gd/VibeTune/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="VibeTune - Stream Your Favorite Songs Free" />
+    <meta property="og:description"
+        content="Discover new music, create playlists, and enjoy a smooth audio experience with VibeTune." />
+    <meta property="og:image" content="https://sumitrathor.rf.gd/VibeTune/assets/images/vibetune-banner.png" />
+    <meta property="og:url" content="https://sumitrathor.rf.gd/VibeTune/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="VibeTune - Free Music Streaming App" />
+    <meta name="twitter:description" content="Create playlists and listen to your favorite songs with VibeTune." />
+    <meta name="twitter:image" content="https://sumitrathor.rf.gd/VibeTune/assets/images/vibetune-banner.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
+
+    <!-- Fonts & Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
-        integrity="sha512-58P9Hy7II0YeXLv+iFiLCv1rtLW47xmiRpC1oFafeKNShp8V5bKV/ciVtYqbk2YfxXQMt58DjNfkXFOn62xE+g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
 </head>
+
 
 <body class="bg-secondary">
     <header>

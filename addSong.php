@@ -1,68 +1,85 @@
 <?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VibeTune | Add Song</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <link rel="icon" href="assets/images/favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
-        integrity="sha512-58P9Hy7II0YeXLv+iFiLCv1rtLW47xmiRpC1oFafeKNShp8V5bKV/ciVtYqbk2YfxXQMt58DjNfkXFOn62xE+g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" href="assets/images/favicon.ico">
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VibeTune | Add Song</title>
 
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Add your favorite songs to VibeTune. Upload, preview, and organize your music playlist easily." />
+  <meta name="keywords" content="VibeTune, add song, upload music, song uploader, playlist creator, music manager" />
+  <meta name="author" content="Sumit Rathor, Team VibeTune" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sumitrathor.rf.gd/VibeTune/addSong.php" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Add Songs to VibeTune" />
+  <meta property="og:description" content="Upload and manage your music collection on VibeTune." />
+  <meta property="og:image" content="https://sumitrathor.rf.gd/VibeTune/assets/images/vibetune-banner.png" />
+  <meta property="og:url" content="https://sumitrathor.rf.gd/VibeTune/addSong.php" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Add Songs to VibeTune" />
+  <meta name="twitter:description" content="Quickly upload and manage your favorite songs on VibeTune." />
+  <meta name="twitter:image" content="https://sumitrathor.rf.gd/VibeTune/assets/images/vibetune-banner.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
+
+  <!-- Fonts & CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Optional Additional Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+  <!-- Inline Styles (for preview sizing and responsiveness) -->
+  <style>
     * {
-        margin: 0;
-        padding: 0;
+      margin: 0;
+      padding: 0;
     }
+
     .container {
-        font-family: 'varela Round', sans-serif;
-        width: 70%;
+      font-family: 'Varela Round', sans-serif;
+      width: 70%;
     }
 
     #songPreview {
-        height: 37px;
+      height: 37px;
     }
 
     #coverPreview {
-        height: 100px;
+      height: 100px;
     }
 
     @media (max-width: 600px) {
-        .container {
-            width: 98%;
-            padding: 0px !important;
-        }
+      .container {
+        width: 98%;
+        padding: 0px !important;
+      }
 
-        .songList {
-            padding: 0px 10px 0px 10px;
-        }
+      .songList {
+        padding: 0px 10px 0px 10px;
+      }
     }
 
-    /* Flexbox layout to ensure footer stays at the bottom */
     .wrapper {
-        min-height: 100vh;
+      min-height: 100vh;
     }
 
     main {
-        flex: 1;
+      flex: 1;
     }
-    </style>
-
+  </style>
 </head>
+
 
 <body class="bg-secondary">
     <div class="wrapper d-flex flex-column">

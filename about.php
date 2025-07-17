@@ -1,54 +1,66 @@
 <?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VibeTune | About</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <link rel="icon" href="assets/images/favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css"
-        integrity="sha512-58P9Hy7II0YeXLv+iFiLCv1rtLW47xmiRpC1oFafeKNShp8V5bKV/ciVtYqbk2YfxXQMt58DjNfkXFOn62xE+g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About VibeTune | Discover Our Mission & Team</title>
 
-        .container {
-            font-family: 'Varela Round', sans-serif;
-            width: 70%;
-        }
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Learn more about VibeTune, the music platform built for passionate listeners. Discover our story, vision, and the team behind the experience." />
+  <meta name="keywords" content="VibeTune, about VibeTune, music platform, music app, team, our story, Sumit Rathor" />
+  <meta name="author" content="Sumit Rathor, Team VibeTune" />
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sumitrathor.rf.gd/VibeTune/about.php" />
 
-        @media (max-width: 600px) {
-            .container {
-                width: 98%;
-                padding: 0px !important;
-            }
+  <!-- Open Graph -->
+  <meta property="og:title" content="About VibeTune" />
+  <meta property="og:description" content="Discover the story and mission behind VibeTune." />
+  <meta property="og:image" content="https://sumitrathor.rf.gd/VibeTune/assets/images/vibetune-banner.png" />
+  <meta property="og:url" content="https://sumitrathor.rf.gd/VibeTune/about.php" />
+  <meta property="og:type" content="website" />
 
-            .padding {
-                padding: 0px 10px 0px 10px;
-            }
-        }
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About VibeTune" />
+  <meta name="twitter:description" content="Explore the journey and mission of VibeTune." />
+  <meta name="twitter:image" content="https://sumitrathor.rf.gd/VibeTune/assets/images/vibetune-banner.png" />
 
-        .wrapper {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
 
-        main {
-            flex: 1;
-        }
-    </style>
+  <!-- CSS & Fonts -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+  <!-- Custom Style -->
+  <style>
+    .container {
+      font-family: 'Varela Round', sans-serif;
+      width: 70%;
+    }
+    @media (max-width: 600px) {
+      .container {
+        width: 98%;
+        padding: 0px !important;
+      }
+      .padding {
+        padding: 0px 10px;
+      }
+    }
+    .wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+    }
+  </style>
 </head>
 
 <body class="bg-secondary">
