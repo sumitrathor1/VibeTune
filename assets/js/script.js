@@ -206,36 +206,52 @@ function showPlaylistDropdown(triggerIcon, songIndex) {
     const dropdown = document.getElementById('playlistDropdown');
     const rect = triggerIcon.getBoundingClientRect();
 
+    // Position the dropdown below the icon
     dropdown.style.left = `${rect.left}px`;
     dropdown.style.top = `${rect.bottom + window.scrollY}px`;
     dropdown.classList.remove('d-none');
 
+    // Get current playlist name of the selected song (to highlight it)
+    const currentPlaylist = songs[songIndex].playlist?.trim();
+
+    // Fetch all playlists
     fetch('assets/pages/api/_count_songs.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: 'type=playlists'
     })
-        .then(res => res.json())
-        .then(data => {
-            const container = document.getElementById('existingPlaylists');
-            container.innerHTML = '';
-            if (data.playlists) {
-                data.playlists.forEach(pl => {
-                    const btn = document.createElement('button');
-                    btn.className = 'btn btn-sm btn-outline-secondary w-100 text-start mb-1';
-                    btn.innerText = pl.name;
-                    btn.addEventListener('click', () => updateSongPlaylist(pl.name));
-                    container.appendChild(btn);
-                });
-            }
-        });
+    .then(res => res.json())
+    .then(data => {
+        const container = document.getElementById('existingPlaylists');
+        container.innerHTML = '';
 
+        if (data.playlists) {
+            data.playlists.forEach(pl => {
+                const btn = document.createElement('button');
+                btn.className = 'btn btn-sm btn-outline-secondary w-100 text-start mb-1';
+                btn.innerText = pl.name;
+
+                // ✅ Highlight the currently selected playlist
+                if (pl.name.trim() === currentPlaylist) {
+                    btn.classList.add('border-danger', 'fw-bold');
+                }
+
+                // Set playlist on click
+                btn.addEventListener('click', () => updateSongPlaylist(pl.name));
+                container.appendChild(btn);
+            });
+        }
+    });
+
+    // Hide the dropdown if user clicks outside
     document.addEventListener('click', hidePlaylistDropdown, { once: true });
 }
 
+
 function hidePlaylistDropdown(e) {
     const dropdown = document.getElementById('playlistDropdown');
-    if (!dropdown.contains(e.target)) {
+    const target = e?.target;
+    if (!target || !dropdown.contains(target)) {
         dropdown.classList.add('d-none');
     }
 }
@@ -251,7 +267,7 @@ function updateSongPlaylist(playlistName) {
         .then(data => {
             if (data.status === 'success') {
                 song.playlist = playlistName;
-                hidePlaylistDropdown({ target: {} });
+                hidePlaylistDropdown();
                 loadPlaylists(); // Refresh playlists
             } else {
                 alert('Failed to update playlist');
@@ -315,6 +331,7 @@ function addSongItemEventListeners() {
     document.querySelectorAll('.addToPlaylist').forEach(icon => {
         icon.addEventListener('click', (e) => {
             e.stopPropagation();
+            newPlaylistName.value = '';
             const songIndex = parseInt(e.currentTarget.dataset.index);
             showPlaylistDropdown(e.currentTarget, songIndex);
         });
