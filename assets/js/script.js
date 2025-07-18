@@ -1,7 +1,7 @@
 // Initialize Variables
 let masterPlay = document.getElementById('masterPlay');
 let myProgressBar = document.getElementById('myProgressBar');
-let gif = document.getElementById('gif');
+// let gif = document.getElementById('gif');
 let masterSongName = document.getElementById('masterSongName');
 let songsList = document.getElementById('songsList');
 let volumeControl = document.getElementById('volumeControl');
@@ -303,10 +303,10 @@ function updateSongsList() {
                     <img alt="${i}" src="${song.coverUrl}" class="rounded-circle me-2 position-relative" width="50" height="50">
                 </div>
                 ${songNameHTML}
-                <span class="timestamp ms-2 w-25 d-flex justify-content-center align-items-center gap-2">
-                    <i class="${heartClass} fa-heart favorite"></i>
-                    <span>${song.songTime}</span>
-                    <i id="play-${i}" class="songItemPlay far fa-play-circle cursor-pointer"></i>
+                <span class="timestamp ms-2 d-flex justify-content-center align-items-center">
+                    <i class="${heartClass} fa-heart favorite me-1"></i>
+                    <span class="me-1">${song.songTime}</span>
+                    <i id="play-${i}" class="songItemPlay far fa-play-circle cursor-pointer me-1"></i>
                     <i class="fa-regular fa-square-plus addToPlaylist" data-index="${i}"></i>
                 </span>
             </div>
@@ -365,7 +365,7 @@ function playSong(updateSrc) {
     totalTime.innerHTML = songs[currentSongIndex].songTime;
     masterPlay.classList.remove('fa-play-circle');
     masterPlay.classList.add('fa-pause-circle');
-    gif.style.opacity = 1;
+    // gif.style.opacity = 1;
 }
 
 function pauseSong() {
@@ -380,7 +380,7 @@ function pauseSong() {
     }
     masterPlay.classList.remove('fa-pause-circle');
     masterPlay.classList.add('fa-play-circle');
-    gif.style.opacity = 0;
+    // gif.style.opacity = 0;
 }
 
 function updateFavoriteCount() {

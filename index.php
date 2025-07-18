@@ -47,6 +47,7 @@
         <?php include "assets/pages/_nav.php";
         nav("home"); ?>
     </header>
+        <div class="wrapper">
     <main>
         <div id="playlistDropdown" class="position-absolute border bg-white p-2 rounded shadow d-none"
             style="z-index: 1000; min-width: 200px;">
@@ -58,11 +59,11 @@
             <button id="removePlaylistBtn" class="btn btn-sm btn-danger w-100">Remove from Playlist</button>
         </div>
 
-        <div class="container bg-black text-white my-4 p-5 rounded">
-            <div class="songList">
+        <div class="container bg-black text-white p-5 rounded songList-box">
+            <div class="songList d-flex flex-column align-item-center justify-content-center">
                 <div class="d-flex flex-row justify-content-around align-items-center">
-                    <h1 class="playwrite">Best of NCS - No Copyright Sounds</h1>
-                    <div class="d-flex h-50">
+                    <h1 class="playwrite">Feel Your Best Music – Unleash the Vibes</h1>
+                    <div class="d-flex h-50 search-bar">
                         <input class="form-control me-2" type="search" id="songName" placeholder="Search"
                             aria-label="Search" required>
                         <div class="loading" id="loading">
@@ -70,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex flex-row">
+                <div class="d-flex flex-row song-list">
                     <div class="w-50">
                         <div id="songInfo" class="song-info">
                         </div>
@@ -110,11 +111,11 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
     </main>
+    </div>
     <?php include "assets/pages/_footer.php"; ?>
     <style>
     .songItem {

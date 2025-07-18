@@ -15,11 +15,9 @@
 
 .container {
   font-family: "varela Round", sans-serif;
-  width: 70%;
-  min-height: 70vh;
 }
 
-.songItem:hover{
+.songItem:hover {
   border: 1px solid rgb(11, 236, 240) !important;
 }
 
@@ -57,23 +55,6 @@
   transition: opacity 0.4s ease-in;
 }
 
-@media (max-width: 600px) {
-  .container {
-    border: #dc3545 !important;
-    width: 98% !important;
-    padding: 0px !important;
-  }
-
-  .songItem {
-    margin: 10px 6px !important;
-  }
-
-  .songInfo {
-    display: none;
-    opacity: 0;
-  }
-}
-
 #volumeControl {
   width: 70%;
   max-width: 100px;
@@ -85,7 +66,7 @@
 
 .songOn {
   width: 46px;
-  height: 46px; 
+  height: 46px;
   color: #dc3545;
 
   border-radius: 50%;
@@ -105,7 +86,6 @@
 
 
 .playwrite {
-  font-family: "Playwrite AU SA", serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -143,23 +123,6 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
 }
 
-@media (max-width: 600px) {
-  .container {
-    border: #dc3545 !important;
-    width: 98% !important;
-    padding: 0px !important;
-  }
-
-  .songItem {
-    margin: 10px 6px !important;
-  }
-
-  .songInfo {
-    display: none;
-    opacity: 0;
-  }
-}
-
 .songName-container {
   overflow: hidden;
   position: relative;
@@ -185,13 +148,18 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @keyframes scroll-loop {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Custom Scrollbar for #songsList */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 3px; /* Slim scrollbar */
+  width: 3px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -209,27 +177,145 @@ input[type="range"]::-moz-range-thumb {
 
 /* Optional: Smooth scroll (UX improvement) */
 .custom-scrollbar {
-  scrollbar-width: thin;              /* Firefox */
-  scrollbar-color: #555 transparent; /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #555 transparent;
 }
 
 .loading {
-    height: 30px; /* adjust as per your layout */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    visibility: hidden;
+  height: 30px;
+  /* adjust as per your layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
 }
 
 .loading.show {
-    visibility: visible;
+  visibility: visible;
 }
 
 
-.Favorites-song-playlist, .All-song-playlist, .playlist-item{
+.Favorites-song-playlist,
+.All-song-playlist,
+.playlist-item {
   cursor: pointer;
 }
 
-.Favorites-song-playlist:hover, .All-song-playlist:hover, .playlist-item:hover{
+.Favorites-song-playlist:hover,
+.All-song-playlist:hover,
+.playlist-item:hover {
   border: 1px solid rgb(11, 236, 240) !important;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
+.songList-box {
+  margin: 1rem !important;
+}
+
+.songList {
+  padding: 1rem;
+  height: 56vh !important;
+  margin: 5px !important;
+}
+
+.wrapper {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 120px;
+  /* reserve space for footer */
+}
+
+footer {
+  height: 120px;
+}
+
+/* Optional: Prevent footer from overlapping fixed element */
+.position-fixed-footer {
+  z-index: 1000;
+}
+
+@media (max-width: 992px) {
+  .playlist>div {
+    width: 100% !important;
+  }
+
+  .songList {
+    height: 65vh !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    border: #dc3545 !important;
+    width: 98% !important;
+    padding: 0px !important;
+  }
+
+  .songItem {
+    margin: 10px 6px !important;
+  }
+
+  .songInfo {
+    display: none;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .container {
+    max-width: 90% !important;
+  }
+
+  .songList>div:first-child {
+    flex-direction: column !important;
+  }
+
+  .song-list {
+    /* flex-direction: column !important; */
+    overflow-x: auto;
+  }
+
+  .song-list>div:first-child{
+    width: 90% !important;
+  }
+
+  .search-bar{
+    width: 100% !important;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #333;
+  }
+
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
+  }
 }

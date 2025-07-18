@@ -1,15 +1,15 @@
-<footer>
+<footer class="position-fixed bottom-0 start-0 end-0 bg-black text-white position-fixed-footer">
     <div
         class="p-2 position-fixed bottom-0 bg-black text-white d-flex justify-content-center align-items-center flex-column w-100">
         <div class="d-flex flex-row align-items-center w-100">
-            <div id="currentTime"></div>
+            <div id="currentTime">00:00</div>
             <input type="range" name="range" class="form-range mx-2" id="myProgressBar" min="0" max="100" value="0"
                 step="0.01">
             <div id="totalTime"></div>
         </div>
         <div class="d-flex flex-row justify-content-around align-items-center w-100">
             <div class="songInfo w-50">
-                <img src="assets/images/playing.gif" id="gif">
+                <!-- <img src="assets/images/playing.gif" id="gif"> -->
                 <span class="fw-bolder text-wrap" id="masterSongName"></span>
             </div>
             <div class="icons mt-2 w-50 d-flex justify-content-center align-items-center">
