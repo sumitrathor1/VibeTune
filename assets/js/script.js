@@ -205,45 +205,57 @@ function showPlaylistDropdown(triggerIcon, songIndex) {
     currentDropdownSongIndex = songIndex;
     const dropdown = document.getElementById('playlistDropdown');
     const rect = triggerIcon.getBoundingClientRect();
+    const dropdownHeight = 250; // approx height
+    const dropdownWidth = 200;
+    const padding = 16;
+    const footerHeight = 120;
 
-    // Position the dropdown below the icon
-    dropdown.style.left = `${rect.left}px`;
-    dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+    // Left positioning (unchanged)
+    let left = rect.left;
+    if ((left + dropdownWidth + padding) > window.innerWidth) {
+        left = window.innerWidth - dropdownWidth - padding;
+    }
+
+    // Top positioning
+    let top = rect.bottom + window.scrollY;
+
+    // Adjust if dropdown bottom would go behind the footer
+    const bottomEdge = top + dropdownHeight;
+    const viewportBottom = window.scrollY + window.innerHeight - footerHeight;
+
+    if (bottomEdge > viewportBottom) {
+        top = viewportBottom - dropdownHeight - padding;
+    }
+
+    dropdown.style.left = `${left}px`;
+    dropdown.style.top = `${top}px`;
     dropdown.classList.remove('d-none');
 
-    // Get current playlist name of the selected song (to highlight it)
     const currentPlaylist = songs[songIndex].playlist?.trim();
 
-    // Fetch all playlists
     fetch('assets/pages/api/_count_songs.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: 'type=playlists'
     })
-    .then(res => res.json())
-    .then(data => {
-        const container = document.getElementById('existingPlaylists');
-        container.innerHTML = '';
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('existingPlaylists');
+            container.innerHTML = '';
+            if (data.playlists) {
+                data.playlists.forEach(pl => {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn btn-sm btn-outline-secondary w-100 text-start mb-1';
+                    btn.innerText = pl.name;
+                    if (pl.name.trim() === currentPlaylist) {
+                        btn.classList.add('border-danger', 'fw-bold');
+                    }
+                    btn.addEventListener('click', () => updateSongPlaylist(pl.name));
+                    container.appendChild(btn);
+                });
+            }
+        });
 
-        if (data.playlists) {
-            data.playlists.forEach(pl => {
-                const btn = document.createElement('button');
-                btn.className = 'btn btn-sm btn-outline-secondary w-100 text-start mb-1';
-                btn.innerText = pl.name;
-
-                // ✅ Highlight the currently selected playlist
-                if (pl.name.trim() === currentPlaylist) {
-                    btn.classList.add('border-danger', 'fw-bold');
-                }
-
-                // Set playlist on click
-                btn.addEventListener('click', () => updateSongPlaylist(pl.name));
-                container.appendChild(btn);
-            });
-        }
-    });
-
-    // Hide the dropdown if user clicks outside
     document.addEventListener('click', hidePlaylistDropdown, { once: true });
 }
 
@@ -397,6 +409,31 @@ function updateFavoriteCount() {
             }
         });
 }
+
+document.getElementById('deleteSongBtn').addEventListener('click', () => {
+    const song = songs[currentDropdownSongIndex];
+    console.log(song);
+    if (confirm(`Are you sure you want to delete "${song.songName}"?`)) {
+        fetch('assets/pages/api/_delete_song.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `sno=${song.sno}`
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                songs.splice(currentDropdownSongIndex, 1);
+                hidePlaylistDropdown();
+                loadPlaylists();
+                updateFavoriteCount();
+            } else {
+                alert('Failed to delete song');
+                console.error(data.message);
+            }
+        });
+    }
+});
+
 
 function countAllSongs() {
     fetch('assets/pages/api/_count_songs.php', {

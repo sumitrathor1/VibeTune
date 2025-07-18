@@ -57,6 +57,8 @@
             <button id="addPlaylistBtn" class="btn btn-sm btn-primary w-100">Add Playlist</button>
             <hr>
             <button id="removePlaylistBtn" class="btn btn-sm btn-danger w-100">Remove from Playlist</button>
+            <hr>
+            <button id="deleteSongBtn" class="btn btn-sm btn-danger w-100">Delete Song</button>
         </div>
 
         <div class="container bg-black text-white p-5 rounded songList-box">
