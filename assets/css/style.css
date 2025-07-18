@@ -319,3 +319,8 @@ footer {
     scrollbar-color: #555 transparent;
   }
 }
+
+#playlistDropdown {
+    overflow-y: auto;
+    max-height: 250px;
+}
