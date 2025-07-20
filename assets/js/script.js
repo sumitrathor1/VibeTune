@@ -479,7 +479,7 @@ function fetchFromDeezer(songName) {
         method: 'GET',
         headers: {
             'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
-            'x-rapidapi-key': 'b556e236e4msh30b0ca1d27d9e96p189bb3jsnb6409c2a5bf1',
+            'x-rapidapi-key': 'YOUR_API_KEY',
         },
     })
         .then(res => res.json())
